@@ -14,10 +14,6 @@ import java.io.Serializable;
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private Role() {
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -28,6 +24,12 @@ public class Role implements Serializable {
 	@Column
 	private String description;
 
+	public Role() {
+	}
+	public Role(String name,String description) {
+		this.name=name;
+		this.description = description;
+	}
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
