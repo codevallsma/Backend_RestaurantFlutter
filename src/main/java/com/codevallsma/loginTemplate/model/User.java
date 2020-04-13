@@ -2,6 +2,7 @@ package com.codevallsma.loginTemplate.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +20,11 @@ public class User implements Serializable {
     @GeneratedValue
     private long id;
     private String email;
+    @Column(name = "username")
+    @ColumnTransformer(
+            read = "AES_DECRYPT(UNHEX(username), 'ankon')",
+            write = "HEX(AES_ENCRYPT(?, 'ankon'))"
+    )
     private String username;
     @JsonIgnore
     private String password;

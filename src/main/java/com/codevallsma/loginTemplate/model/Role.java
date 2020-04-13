@@ -3,6 +3,7 @@ package com.codevallsma.loginTemplate.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +19,11 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column
+	@Column(name = "name")
+	@ColumnTransformer(
+			read = "AES_DECRYPT(UNHEX(name), 'ankon')",
+			write = "HEX(AES_ENCRYPT(?, 'ankon'))"
+	)
 	private String name;
 
 	@Column
