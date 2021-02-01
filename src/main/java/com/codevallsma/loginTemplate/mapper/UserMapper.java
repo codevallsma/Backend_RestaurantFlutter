@@ -2,6 +2,7 @@ package com.codevallsma.loginTemplate.mapper;
 
 import com.codevallsma.loginTemplate.model.User;
 import com.codevallsma.loginTemplate.web.presentation.AuthorizationRequest;
+import com.codevallsma.loginTemplate.web.presentation.RegistrationRequest;
 import com.codevallsma.loginTemplate.web.presentation.UserResponse;
 
 public class UserMapper {
@@ -15,5 +16,8 @@ public class UserMapper {
 
 	public static User toDomain(AuthorizationRequest authorizationRequest) {
 		return new User(authorizationRequest.getUserName(), authorizationRequest.getPassword());
+	}
+	public static User toRegistrationDomain(RegistrationRequest registrationRequest) {
+		return new User(registrationRequest.getUserName(),registrationRequest.getEmail(), registrationRequest.getPassword());
 	}
 }
