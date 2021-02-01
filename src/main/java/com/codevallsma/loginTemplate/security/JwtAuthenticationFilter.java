@@ -18,8 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-import static com.codevallsma.loginTemplate.utils.Constants.HEADER_AUTHORIZATION_KEY;
-import static com.codevallsma.loginTemplate.utils.Constants.TOKEN_BEARER_PREFIX;
+import static com.codevallsma.loginTemplate.utils.Constants.*;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -56,6 +55,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		UserToken userToken = new UserToken(token);
 		response.setStatus(HttpStatus.OK.value());
 		response.addHeader(HEADER_AUTHORIZATION_KEY, TOKEN_BEARER_PREFIX + " " + token);
+		response.addHeader(CONTENT_TYPE, "application/json");
 		response.getWriter().append(userToken.toString());
 	}
 	private String jsonResponseBadRequest() {
