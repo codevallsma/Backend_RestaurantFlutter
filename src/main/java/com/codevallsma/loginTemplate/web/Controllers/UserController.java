@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -55,14 +56,16 @@ public class UserController {
 
 	@PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
 	@GetMapping("")
-	public ResponseEntity<User> getUserByUsername(@RequestParam(name = "id") String username) {
-		final User user =userRepository.findByUsername(username);
-
-		if (user == null) {
-			return ResponseEntity.notFound().build();
+	public ResponseEntity<User> getUserByUsername(@RequestParam(name = "id", required = true) String username) {
+		User user = null;
+		if(username.compareTo("null")!=0) {
+			 user = userRepository.findByUsernameOrEmail(username);
 		}
-
-		UserResponse userResponse = UserMapper.toResponse(user);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		if (user == null) {
+			throw new ResponseStatusException(
+					HttpStatus.NOT_FOUND, "Not an acceptble value"
+			);
+		}
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 }

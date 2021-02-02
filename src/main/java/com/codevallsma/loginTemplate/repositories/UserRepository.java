@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
+    @Query("SELECT user FROM User user WHERE (user.username =:userNameOrEmail OR user.email =:userNameOrEmail)" )
+    User findByUsernameOrEmail(String userNameOrEmail);
     User findByUsernameAndEmailAndPassword(String username, String email, String password);
     User findByEmail(String email);
     @Query("SELECT user FROM User user WHERE (user.username =:userNameOrEmail OR user.email =:userNameOrEmail) AND user.password =:password" )
