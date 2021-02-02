@@ -32,8 +32,8 @@ public class RestAPIController {
         tokenApiTomTom  = "L7WNbLd9EjhSSPUzeTbwsYJDBfg24c1M";
     }
 
-    public void getNearestRestaurant(String latitude, String longitude, String queryLimit, Integer categoryNum, String apiKey){
-        Call<Example> callSync = restApi.getNearestRestaurant(latitude, longitude, queryLimit, categoryNum, apiKey);
+    public void getNearestRestaurant(String latitude, String longitude, String queryLimit, Integer categoryNum){
+        Call<Example> callSync = restApi.getNearestRestaurant(latitude, longitude, queryLimit, categoryNum, tokenApiTomTom);
         try
         {
             Response<Example> response = callSync.execute();

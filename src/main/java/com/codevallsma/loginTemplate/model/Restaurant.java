@@ -22,6 +22,7 @@ public class Restaurant implements Serializable {
     private double latitud;
     @Column(name = "LONGITUD")
     private double longitud;
+    private String restaurantName;
 
 
     public Restaurant(long id, String ocupacio, String emplacamament, Float superficieOcupada,  int taules,  int cadires, double latitud, double longitud ) {
