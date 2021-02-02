@@ -1,8 +1,7 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -13,23 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "poiDetails"
+    "id",
+    "sourceName"
 })
-public class DataSources {
+public class PoiDetail {
 
-    @JsonProperty("poiDetails")
-    private List<PoiDetail> poiDetails = null;
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty("sourceName")
+    private String sourceName;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("poiDetails")
-    public List<PoiDetail> getPoiDetails() {
-        return poiDetails;
+    @JsonProperty("id")
+    public String getId() {
+        return id;
     }
 
-    @JsonProperty("poiDetails")
-    public void setPoiDetails(List<PoiDetail> poiDetails) {
-        this.poiDetails = poiDetails;
+    @JsonProperty("id")
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @JsonProperty("sourceName")
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    @JsonProperty("sourceName")
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
     }
 
     @JsonAnyGetter

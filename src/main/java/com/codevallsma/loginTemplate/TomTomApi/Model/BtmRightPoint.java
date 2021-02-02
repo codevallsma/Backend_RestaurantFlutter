@@ -1,5 +1,5 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "lat",
     "lon"
 })
-public class GeoBias {
+public class BtmRightPoint {
 
     @JsonProperty("lat")
     private Double lat;

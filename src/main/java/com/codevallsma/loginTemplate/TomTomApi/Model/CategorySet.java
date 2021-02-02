@@ -1,5 +1,5 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "topLeftPoint",
-    "btmRightPoint"
+    "id"
 })
-public class Viewport {
+public class CategorySet {
 
-    @JsonProperty("topLeftPoint")
-    private TopLeftPoint topLeftPoint;
-    @JsonProperty("btmRightPoint")
-    private BtmRightPoint btmRightPoint;
+    @JsonProperty("id")
+    private Integer id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("topLeftPoint")
-    public TopLeftPoint getTopLeftPoint() {
-        return topLeftPoint;
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
     }
 
-    @JsonProperty("topLeftPoint")
-    public void setTopLeftPoint(TopLeftPoint topLeftPoint) {
-        this.topLeftPoint = topLeftPoint;
-    }
-
-    @JsonProperty("btmRightPoint")
-    public BtmRightPoint getBtmRightPoint() {
-        return btmRightPoint;
-    }
-
-    @JsonProperty("btmRightPoint")
-    public void setBtmRightPoint(BtmRightPoint btmRightPoint) {
-        this.btmRightPoint = btmRightPoint;
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @JsonAnyGetter

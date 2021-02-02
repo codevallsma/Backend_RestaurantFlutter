@@ -1,8 +1,7 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -13,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "summary",
-    "results"
+    "nameLocale",
+    "name"
 })
-public class Example {
+public class Name {
 
-    @JsonProperty("summary")
-    private Summary summary;
-    @JsonProperty("results")
-    private List<Result> results = null;
+    @JsonProperty("nameLocale")
+    private String nameLocale;
+    @JsonProperty("name")
+    private String name;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("summary")
-    public Summary getSummary() {
-        return summary;
+    @JsonProperty("nameLocale")
+    public String getNameLocale() {
+        return nameLocale;
     }
 
-    @JsonProperty("summary")
-    public void setSummary(Summary summary) {
-        this.summary = summary;
+    @JsonProperty("nameLocale")
+    public void setNameLocale(String nameLocale) {
+        this.nameLocale = nameLocale;
     }
 
-    @JsonProperty("results")
-    public List<Result> getResults() {
-        return results;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("results")
-    public void setResults(List<Result> results) {
-        this.results = results;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     @JsonAnyGetter

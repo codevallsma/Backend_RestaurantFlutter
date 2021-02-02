@@ -1,5 +1,5 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "nameLocale",
-    "name"
+    "topLeftPoint",
+    "btmRightPoint"
 })
-public class Name {
+public class Viewport {
 
-    @JsonProperty("nameLocale")
-    private String nameLocale;
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("topLeftPoint")
+    private TopLeftPoint topLeftPoint;
+    @JsonProperty("btmRightPoint")
+    private BtmRightPoint btmRightPoint;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("nameLocale")
-    public String getNameLocale() {
-        return nameLocale;
+    @JsonProperty("topLeftPoint")
+    public TopLeftPoint getTopLeftPoint() {
+        return topLeftPoint;
     }
 
-    @JsonProperty("nameLocale")
-    public void setNameLocale(String nameLocale) {
-        this.nameLocale = nameLocale;
+    @JsonProperty("topLeftPoint")
+    public void setTopLeftPoint(TopLeftPoint topLeftPoint) {
+        this.topLeftPoint = topLeftPoint;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("btmRightPoint")
+    public BtmRightPoint getBtmRightPoint() {
+        return btmRightPoint;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("btmRightPoint")
+    public void setBtmRightPoint(BtmRightPoint btmRightPoint) {
+        this.btmRightPoint = btmRightPoint;
     }
 
     @JsonAnyGetter

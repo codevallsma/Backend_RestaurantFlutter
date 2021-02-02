@@ -1,5 +1,5 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,23 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id"
+    "lat",
+    "lon"
 })
-public class CategorySet {
+public class TopLeftPoint {
 
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("lat")
+    private Double lat;
+    @JsonProperty("lon")
+    private Double lon;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
+    @JsonProperty("lat")
+    public Double getLat() {
+        return lat;
     }
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
+    @JsonProperty("lat")
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    @JsonProperty("lon")
+    public Double getLon() {
+        return lon;
+    }
+
+    @JsonProperty("lon")
+    public void setLon(Double lon) {
+        this.lon = lon;
     }
 
     @JsonAnyGetter

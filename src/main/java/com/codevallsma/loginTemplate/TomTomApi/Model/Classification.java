@@ -1,7 +1,8 @@
 
-package com.codevallsma.loginTemplate.TomTomApi;
+package com.codevallsma.loginTemplate.TomTomApi.Model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,36 +13,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "lat",
-    "lon"
+    "code",
+    "names"
 })
-public class TopLeftPoint {
+public class Classification {
 
-    @JsonProperty("lat")
-    private Double lat;
-    @JsonProperty("lon")
-    private Double lon;
+    @JsonProperty("code")
+    private String code;
+    @JsonProperty("names")
+    private List<Name> names = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("lat")
-    public Double getLat() {
-        return lat;
+    @JsonProperty("code")
+    public String getCode() {
+        return code;
     }
 
-    @JsonProperty("lat")
-    public void setLat(Double lat) {
-        this.lat = lat;
+    @JsonProperty("code")
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    @JsonProperty("lon")
-    public Double getLon() {
-        return lon;
+    @JsonProperty("names")
+    public List<Name> getNames() {
+        return names;
     }
 
-    @JsonProperty("lon")
-    public void setLon(Double lon) {
-        this.lon = lon;
+    @JsonProperty("names")
+    public void setNames(List<Name> names) {
+        this.names = names;
     }
 
     @JsonAnyGetter
