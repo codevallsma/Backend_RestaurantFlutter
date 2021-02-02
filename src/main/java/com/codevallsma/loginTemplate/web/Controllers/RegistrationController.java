@@ -18,11 +18,9 @@ public class RegistrationController {
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	private UserService userService;
 	private UserServiceImpl userServiceImpl;
 
 	public RegistrationController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder, UserServiceImpl userServiceImpl) {
-		this.userService = userService;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.userServiceImpl = userServiceImpl;
 	}
@@ -30,7 +28,7 @@ public class RegistrationController {
 	public ResponseEntity<User> saveUser(@RequestBody RegistrationRequest userRequest) {
 		userRequest.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
 		User parsedUser = UserMapper.toRegistrationDomain(userRequest);
-		final User userToSave = userServiceImpl.save(parsedUser);
+		final User userToSave = userServiceImpl.saveUserWithRoles(parsedUser);
 
 		return new ResponseEntity<>(userToSave, HttpStatus.OK);
 	}
