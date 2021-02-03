@@ -7,7 +7,7 @@ import retrofit2.http.Query;
 
 public interface RestAPI {
 
-    @GET
+    @GET(".json")
     Call<Example> getNearestRestaurant(@Query("lat") String latitude, @Query("lon")String longitude, @Query("limit") String queryLimit, @Query("categorySet") Integer categoryNum, @Query("key") String apiKey);
 
 }

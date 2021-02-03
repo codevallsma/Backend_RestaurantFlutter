@@ -11,12 +11,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String categoria;
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "Restaurant_Category", joinColumns = {
-            @JoinColumn(name = "CATEGORY_ID") }, inverseJoinColumns = {
-            @JoinColumn(name = "RESTAURANT_ID") })
-    private Set<Restaurant> categoria_restaurant;
 
     public Category() {
     }
@@ -44,13 +38,5 @@ public class Category {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public Set<Restaurant> getCategoria_restaurant() {
-        return categoria_restaurant;
-    }
-
-    public void setCategoria_restaurant(Set<Restaurant> categoria_restaurant) {
-        this.categoria_restaurant = categoria_restaurant;
     }
 }

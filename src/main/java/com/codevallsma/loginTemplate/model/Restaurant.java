@@ -1,7 +1,10 @@
 package com.codevallsma.loginTemplate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "TERRASSA")
 public class Restaurant implements Serializable {
@@ -23,6 +26,12 @@ public class Restaurant implements Serializable {
     @Column(name = "LONGITUD")
     private double longitud;
     private String restaurantName;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "Terrassa_Category", joinColumns = {
+            @JoinColumn(name = "RESTAURANT_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "CATEGORY_ID") })
+    private Set<Category> categoria_restaurant;
 
 
     public Restaurant(long id, String ocupacio, String emplacamament, Float superficieOcupada,  int taules,  int cadires, double latitud, double longitud ) {
@@ -102,5 +111,21 @@ public class Restaurant implements Serializable {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public Set<Category> getCategoria_restaurant() {
+        return categoria_restaurant;
+    }
+
+    public void setCategoria_restaurant(Set<Category> categoria_restaurant) {
+        this.categoria_restaurant = categoria_restaurant;
     }
 }
