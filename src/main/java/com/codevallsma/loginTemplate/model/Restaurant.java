@@ -27,7 +27,7 @@ public class Restaurant implements Serializable {
     private double longitud;
     private String restaurantName;
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = com.codevallsma.loginTemplate.model.Category.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "Terrassa_Category", joinColumns = {
             @JoinColumn(name = "RESTAURANT_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "CATEGORY_ID") })

@@ -42,7 +42,7 @@ public class RestAPIController {
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
         restApi = retrofit.create(RestAPI.class);
-        tokenApiTomTom  = "L7WNbLd9EjhSSPUzeTbwsYJDBfg24c1M";
+        tokenApiTomTom  = "f1jMQAPM2IFGWxOqF2UdFYWnkK1RgjWG";
     }
 
     public void getNearestRestaurant(Restaurant restaurant, String queryLimit) throws IOException {
@@ -53,8 +53,11 @@ public class RestAPIController {
         assert apiResponse != null;
         //get categories
         List<String> categories = apiResponse.getResults().get(0).getPoi().getCategories();
-        //getting the existing categories and storing then in the database
-        Set<Category>  dbCategory = getDbCategories(categories);
+        Set<Category> dbCategory= null;
+        if(categories!=null) {
+            //getting the existing categories and storing then in the database
+            dbCategory = getDbCategories(categories);
+        }
         //getting the name of the nearest restaurant
         String name = apiResponse.getResults().get(0).getPoi().getName();
         //setting the name to store it in the database

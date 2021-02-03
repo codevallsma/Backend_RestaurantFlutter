@@ -17,6 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.Thread.sleep;
+
 @Component
 public class UserCommandLineRunner implements CommandLineRunner {
 
@@ -43,7 +45,6 @@ public class UserCommandLineRunner implements CommandLineRunner {
         roleRepository.save(role1);
         roleRepository.save(role2);
         roleRepository.save(role3);
-
         Role userRole = roleRepository.findByName("USER");
         Role adminRole = roleRepository.findByName("ADMIN");
         Set<Role> roles = new HashSet<>();
@@ -55,12 +56,13 @@ public class UserCommandLineRunner implements CommandLineRunner {
         addNewUser("adminUser", "myAdminPassword", roles);*/
 
         // data tomtotm api
-        /*List<Restaurant> restaurants = restaurantRepository.findAll();
+        /*List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findByRestaurantNameIsNull();
         RestAPIController.getInstance().setRestaurantRepository(restaurantRepository);
         RestAPIController.getInstance().setCategoryRepository(categoryRepository);
         for (Restaurant restaurant:
              restaurants) {
             RestAPIController.getInstance().getNearestRestaurant(restaurant, "1");
+            sleep(500);
         }*/
     }
     public void addNewUser(String username, String password, Set<Role> roles ){
