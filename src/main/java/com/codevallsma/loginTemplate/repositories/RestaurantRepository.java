@@ -12,5 +12,13 @@ import java.util.List;
 
 @Component
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-    List<Restaurant> findByRestaurantNameIsNull();
+    @Query( value = "SELECT * FROM TERRASSA AS t JOIN Category as c JOIN Terrassa_Category as tc on c.id= tc.CATEGORY_ID AND t.id = tc.RESTAURANT_ID where c.categoria= ?1", nativeQuery = true)
+    List<Restaurant> getRestaurantByCategoria(String categoryName);
+
+    @Query( value = "SELECT * FROM TERRASSA AS t where c.categoria LIKE \'%?1\'", nativeQuery = true)
+    List<Restaurant> getRestaurantAutcomplete(String categoryName);
+
+    List<Restaurant> findRestaurantsByRestaurantNameStartingWith(String StartingQuery);
+
+    List<Restaurant> findTop20ByRestaurantNameStartingWith(String restaurant);
 }

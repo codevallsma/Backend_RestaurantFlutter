@@ -63,7 +63,7 @@ public class UserController {
 		}
 		if (user == null) {
 			throw new ResponseStatusException(
-					HttpStatus.NOT_FOUND, "Not an acceptble value"
+					HttpStatus.NOT_FOUND, "Not an acceptable value"
 			);
 		}
 		return new ResponseEntity<>(user, HttpStatus.OK);
