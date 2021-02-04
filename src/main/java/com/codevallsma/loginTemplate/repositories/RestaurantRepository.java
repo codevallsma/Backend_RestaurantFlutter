@@ -21,4 +21,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     List<Restaurant> findRestaurantsByRestaurantNameStartingWith(String StartingQuery);
 
     List<Restaurant> findTop20ByRestaurantNameStartingWith(String restaurant);
+
+    @Query(value = "SELECT * from TERRASSA as t order by st_distance_sphere( POINT( ?1, ?2) , POINT(t.LATITUD, t.LONGITUD )) LIMIT ?3",nativeQuery = true)
+    List<Restaurant> getKnearestRestaurants(double latUser, double longUser, int limit);
 }

@@ -68,4 +68,33 @@ public class RestaurantController {
         return new ResponseEntity<>(autocompletes, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
+    @GetMapping("/restaurant/knn")
+    public ResponseEntity<List<Restaurant>> getKNearestRestaurants(@RequestParam(name = "lat", required = true) Double lat, @RequestParam(name = "lng", required = true) Double lng, @RequestParam(name = "num_restaurants", required = true) int num_restaurants) {
+
+        List<Restaurant> restaurantListKNN= null;
+        List<Restaurant> knnFinalRestaurants= null;
+        if(lat!=null && lng!=null &&num_restaurants!=0) {
+            HashMap<String, String> restaurantNameHash = new HashMap<String, String>();
+            restaurantListKNN =restaurantRepository.getKnearestRestaurants(lat, lng, num_restaurants);
+            if(restaurantListKNN!=null) {
+                knnFinalRestaurants= new LinkedList<>();
+                for (Restaurant restaurant :
+                        restaurantListKNN) {
+                    if (!restaurantNameHash.containsKey(restaurant.getRestaurantName())) {
+                        restaurantNameHash.put(restaurant.getRestaurantName(), restaurant.getRestaurantName());
+                        knnFinalRestaurants.add(restaurant);
+                    }
+
+                }
+            }
+        }
+        if (restaurantListKNN == null || knnFinalRestaurants.size()==0) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Not an acceptable value or value not found"
+            );
+        }
+        return new ResponseEntity<>(knnFinalRestaurants, HttpStatus.OK);
+    }
+
 }
