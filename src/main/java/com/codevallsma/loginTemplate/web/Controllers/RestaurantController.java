@@ -1,5 +1,6 @@
 package com.codevallsma.loginTemplate.web.Controllers;
 
+import com.codevallsma.loginTemplate.model.Category;
 import com.codevallsma.loginTemplate.model.Restaurant;
 import com.codevallsma.loginTemplate.repositories.RestaurantRepository;
 import com.codevallsma.loginTemplate.web.presentation.Autocomplete;
@@ -7,13 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class RestaurantController {
@@ -95,6 +95,28 @@ public class RestaurantController {
             );
         }
         return new ResponseEntity<>(knnFinalRestaurants, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
+    @GetMapping("/restaurantByCategory/{restaurantId}")
+    public ResponseEntity<Set<Category>> getRestaurantIdByCategory(@PathVariable("restaurantId") Long restaurantId) {
+        Restaurant restaurantRes = null;
+        if(restaurantId!=null) {
+            HashMap<String, String> restaurantNameHash = new HashMap<String, String>();
+            Optional<Restaurant> restaurants =restaurantRepository.findById(restaurantId);
+            if(restaurants.isPresent()){
+                restaurantRes = restaurants.get();
+            } else{
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Not an acceptable value or value not found"
+                );
+            }
+        } else{
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Not an acceptable value or value not found"
+            );
+        }
+        return new ResponseEntity<>(restaurantRes.getCategoria_restaurant(), HttpStatus.OK);
     }
 
 }
