@@ -37,7 +37,12 @@ public class User implements Serializable {
             @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID") })
     private Set<Role> roles;
-
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_RESTAURANTLIKES", joinColumns = {
+            @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "RESTAURANT_ID") })
+    private Set<Restaurant> restaurantsLiked;
     /**
      * Empty constructor
      */
@@ -150,5 +155,12 @@ public class User implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public Set<Restaurant> getRestaurantsLiked() {
+        return restaurantsLiked;
+    }
+
+    public void setRestaurantsLiked(Set<Restaurant> restaurantsLiked) {
+        this.restaurantsLiked = restaurantsLiked;
     }
 }
