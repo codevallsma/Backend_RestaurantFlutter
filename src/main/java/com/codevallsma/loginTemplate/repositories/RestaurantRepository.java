@@ -24,4 +24,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     @Query(value = "SELECT * from TERRASSA as t order by st_distance_sphere( POINT( ?1, ?2) , POINT(t.LATITUD, t.LONGITUD )) LIMIT ?3",nativeQuery = true)
     List<Restaurant> getKnearestRestaurants(double latUser, double longUser, int limit);
+
+    @Query(value = "SELECT * from TERRASSA as t , USER_RESTAURANTLIKES AS urs  where urs.USER_ID= ?1 and urs.RESTAURANT_ID = t.id",nativeQuery = true)
+    List<Restaurant> getLikedRestaurants(long userId);
+
+    @Query(value = "SELECT t.* from TERRASSA as t JOIN USER_RESTAURANTLIKES AS url JOIN Terrassa_Category AS tc on tc.CATEGORY_ID = ?2 and tc.RESTAURANT_ID=url.RESTAURANT_ID AND url.USER_ID= ?1 AND url.RESTAURANT_ID = t.id;",nativeQuery = true)
+    List<Restaurant> getLikedRestaurantsByCategory(long userId, long categoryId);
 }
