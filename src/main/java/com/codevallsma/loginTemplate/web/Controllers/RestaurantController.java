@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class RestaurantController {
@@ -116,7 +117,7 @@ public class RestaurantController {
                     HttpStatus.NOT_FOUND, "Not an acceptable value or value not found"
             );
         }
-        return new ResponseEntity<>(restaurantRes.getCategoria_restaurant(), HttpStatus.OK);
+        return new ResponseEntity<>(restaurantRes.getCategoria_restaurant().stream().filter(e->e.getCategoria().compareTo("restaurant")!=0).collect(Collectors.toSet()), HttpStatus.OK);
     }
 
 }
