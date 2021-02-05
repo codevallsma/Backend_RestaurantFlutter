@@ -1,9 +1,9 @@
 # Restaurant-Server
-To set up the Minder backend some steps have to be followed:
-**1-Create the database in your MySQL command line:**
-    -Just like this:
-    create database <nameOfYouRDatabase>;
-    In our case we set the Database to Restaurant
+To set up the Minder backend some steps have to be followed:<br>
+**1-Create the database in your MySQL command line:**<br>
+    -Just like this:<br>
+    create database <nameOfYouRDatabase>;<br>
+    In our case we set the Database to Restaurant<br>
       -<kbd/>**create database Restaurant**</kbd>;
     
 **2- Open the Project with IntellIJ.**
