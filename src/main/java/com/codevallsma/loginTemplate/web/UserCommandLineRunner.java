@@ -38,13 +38,15 @@ public class UserCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        //Save roles
-        /*Role role1 = new Role("ADMIN", "Admin role");
-        Role role2 = new Role("USER", "User role");
-        Role role3 = new Role("OPERATIONAL", "Operational role");
-        roleRepository.save(role1);
-        roleRepository.save(role2);
-        roleRepository.save(role3);
+        if(roleRepository.findByName("USER")== null) {
+            //Save roles
+            Role role1 = new Role("ADMIN", "Admin role");
+            Role role2 = new Role("USER", "User role");
+            Role role3 = new Role("OPERATIONAL", "Operational role");
+            roleRepository.save(role1);
+            roleRepository.save(role2);
+            roleRepository.save(role3);
+        }
         Role userRole = roleRepository.findByName("USER");
         Role adminRole = roleRepository.findByName("ADMIN");
         Set<Role> roles = new HashSet<>();
@@ -53,7 +55,7 @@ public class UserCommandLineRunner implements CommandLineRunner {
         addNewUser("codevallsma", "myUserPassword", roles);
         roles.add(adminRole);
         //user and admin roles
-        addNewUser("adminUser", "myAdminPassword", roles);*/
+        addNewUser("adminUser", "myAdminPassword", roles);
 
         // data tomtotm api
         /*List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findByRestaurantNameIsNull();
@@ -66,9 +68,12 @@ public class UserCommandLineRunner implements CommandLineRunner {
         }*/
     }
     public void addNewUser(String username, String password, Set<Role> roles ){
-        User userToSave = new User(username, bCryptPasswordEncoder.encode(password));
-        userRepository.save(userToSave);
-        userToSave.setRoles(roles);
-        userRepository.save(userToSave);
+        //si l'usuari no està creat el guardem
+        if(userRepository.findByUsername(username)==null){
+            User userToSave = new User(username, bCryptPasswordEncoder.encode(password));
+            userRepository.save(userToSave);
+            userToSave.setRoles(roles);
+            userRepository.save(userToSave);
+        }
     }
 }
