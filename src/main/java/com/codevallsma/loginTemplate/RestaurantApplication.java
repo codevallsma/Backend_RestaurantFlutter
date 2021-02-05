@@ -4,11 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LoginTemplateApplication {
+public class RestaurantApplication {
 	//private UserServiceImpl userService;
 	//private BCryptPasswordEncoder bCryptPasswordEncoder;
 	public static void main(String[] args) {
-		SpringApplication.run(LoginTemplateApplication.class, args);
+		SpringApplication.run(RestaurantApplication.class, args);
 	}
 	/*@Bean
 	CommandLineRunner runner() {
