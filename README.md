@@ -1,5 +1,5 @@
 # Restaurant-Server
-To set up the Minder backend some steps have to be followed:<br>
+To set up the Restaurant backend some steps have to be followed:<br>
 **1-Create the database in your MySQL command line:**<br>
     -Just like this:<br>
     create database <nameOfYouRDatabase>;<br>
