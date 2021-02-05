@@ -2,7 +2,7 @@
 To set up the Restaurant backend some steps have to be followed:<br>
 **1-Create the database in your MySQL command line:**<br>
     -Just like this:<br>
-    create database <nameOfYouRDatabase>;<br>
+        create database <nameOfYouRDatabase>;<br>
     In our case we set the Database to Restaurant<br>
       -<kbd/>**create database Restaurant**</kbd>;
     
@@ -19,6 +19,8 @@ jdbc:mysql://localhost:3306/Restaurant?useSSL=false&allowPublicKeyRetrieval=true
           <kbd/>**spring.datasource.username=yourUser**</kbd><br><br>
   - *3.2) Set the passsword of your root user or the database user owner in "spring.datasource.password. In our case we will use the root password"*<br>
          <kbd/>**spring.datasource.password=YourPassword**</kbd><br><br>
-  - *3.4) Set spring.jpa.hibernate.ddl-auto to create:*<br>
-         <kbd/>**spring.jpa.hibernate.ddl-auto=create**</kbd><br><br>
+  - *3.4) Set spring.jpa.hibernate.ddl-auto to create if it is the first time you run the application:*<br>
+         <kbd/>**spring.jpa.hibernate.ddl-auto=create**</kbd><br>
+         If it is not the first time you run the app you have to modify this part to update:<br>
+         <kbd/>**spring.jpa.hibernate.ddl-auto=update**</kbd><br><br>
 **4- Right click with your mouse the RestaurantAplication file and click "Run 'RestaurantAplication'"**      
